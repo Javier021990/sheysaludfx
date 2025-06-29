@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,59 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sheysaludfx</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script defer>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <!-- Hero Section -->
-  <section class="bg-white text-center py-10 shadow">
-    <h1 class="text-4xl font-bold">sheysaludfx</h1>
-    <p class="mt-4 text-lg">Bienestar natural con asesoría profesional</p>
-    <button class="mt-6 px-6 py-2 bg-green-600 text-white rounded-xl">Ver productos</button>
-  </section>
-
-  <!-- Quiénes somos -->
-  <section class="px-6 py-10">
-    <h2 class="text-2xl font-bold mb-4">Quiénes somos</h2>
-    <p>En sheysaludfx ofrecemos productos naturales y asesoría de enfermería para ayudarte a alcanzar tu bienestar integral.</p>
-  </section>
-
-  <!-- Productos -->
-  <section class="px-6 py-10 bg-gray-100">
-    <h2 class="text-2xl font-bold mb-6">Productos destacados</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-white p-4 shadow rounded-xl">
-        <img src="https://via.placeholder.com/150" alt="Producto" class="w-full h-40 object-cover rounded" />
-        <h3 class="mt-4 font-semibold">Producto 1</h3>
-        <p class="text-green-600">$25.00</p>
-        <button class="mt-2 w-full bg-green-500 text-white py-2 rounded">Añadir al carrito</button>
-      </div>
+  <!-- Navbar -->
+  <header class="bg-white shadow fixed w-full z-50 top-0">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-xl font-bold text-green-700">sheysaludfx</h1>
+      <nav class="hidden md:flex space-x-4 text-sm font-medium">
+        <a href="#inicio" class="text-gray-700 hover:text-green-600">Inicio</a>
+        <a href="#productos" class="text-gray-700 hover:text-green-600">Productos</a>
+        <a href="#testimonios" class="text-gray-700 hover:text-green-600">Testimonios</a>
+        <a href="#asesoria" class="text-gray-700 hover:text-green-600">Asesoría</a>
+        <a href="#contacto" class="text-gray-700 hover:text-green-600">Contacto</a>
+      </nav>
+      <button class="md:hidden text-gray-700 focus:outline-none" onclick="toggleMenu()">
+        ☰
+      </button>
     </div>
-  </section>
-
-  <!-- Testimonios -->
-  <section class="px-6 py-10">
-    <h2 class="text-2xl font-bold mb-6">Testimonios</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-white p-4 shadow rounded-xl">
-        <p>“Gracias a sheysaludfx me siento con más energía y salud.”</p>
-        <p class="mt-2 text-sm font-semibold">– Ana L.</p>
-      </div>
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+      <a href="#inicio" class="block py-2 text-gray-700 hover:text-green-600">Inicio</a>
+      <a href="#productos" class="block py-2 text-gray-700 hover:text-green-600">Productos</a>
+      <a href="#testimonios" class="block py-2 text-gray-700 hover:text-green-600">Testimonios</a>
+      <a href="#asesoria" class="block py-2 text-gray-700 hover:text-green-600">Asesoría</a>
+      <a href="#contacto" class="block py-2 text-gray-700 hover:text-green-600">Contacto</a>
     </div>
-  </section>
+  </header>
 
-  <!-- Asesoría de enfermería -->
-  <section class="px-6 py-10 bg-gray-100">
-    <h2 class="text-2xl font-bold mb-4">Asesoría de enfermería</h2>
-    <p class="mb-4">Agenda una sesión personalizada con nuestros profesionales de la salud.</p>
-    <a href="https://wa.me/593999999999" class="inline-block bg-green-600 text-white px-6 py-2 rounded">Agendar por WhatsApp</a>
-  </section>
+  <main class="pt-24">
+    <!-- Hero Section -->
+    <section id="inicio" class="bg-gradient-to-r from-green-500 to-green-700 text-white text-center py-16 px-4">
+      <h1 class="text-5xl font-bold mb-4">sheysaludfx</h1>
+      <p class="text-lg max-w-xl mx-auto">Tu salud y bienestar, respaldados por asesoría de enfermería profesional y productos naturales de calidad.</p>
+      <button class="mt-6 px-6 py-3 bg-white text-green-700 font-semibold rounded-full shadow hover:bg-gray-100 transition">Ver productos</button>
+    </section>
 
-  <!-- Footer -->
-  <footer class="bg-white py-6 text-center shadow-t mt-10">
-    <p>&copy; 2025 sheysaludfx. Todos los derechos reservados.</p>
-  </footer>
+    <!-- Quiénes somos -->
+    <section class="px-6 py-14 text-center">
+      <h2 class="text-3xl font-bold mb-4">Sobre nosotros</h2>
+      <p class="max-w-2xl mx-auto">En <strong>sheysaludfx</strong> nos enfocamos en potenciar tu bienestar físico y emocional a través de productos naturales, asesoramiento profesional y compromiso con tu salud integral.</p>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos" class="px-6 py-14 bg-gray-100">
+      <h2 class="text-3xl font-bold text-center mb-10">Productos destacados</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow p-6 text-center">
+          <img src="https://via.placeholder.com/200x200" alt="Producto" class="mx-auto mb-4 rounded" />
+          <h3 class="font-bold text-xl">Detox Natural</h3>
+          <p class="text-green-600 font-semibold my-2">$25.00</p>
+          <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700">Añadir al carrito</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="px-6 py-14">
+      <h2 class="text-3xl font-bold text-center mb-10">Lo que dicen nuestros clientes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white p-6 shadow rounded-xl">
+          <p class="text-gray-700 italic">“Con los productos de sheysaludfx me siento con más energía cada día. La asesoría personalizada marca la diferencia.”</p>
+          <p class="mt-4 font-semibold">– Ana López</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Asesoría de enfermería -->
+    <section id="asesoria" class="px-6 py-14 bg-gray-100 text-center">
+      <h2 class="text-3xl font-bold mb-4">Asesoría de enfermería</h2>
+      <p class="max-w-xl mx-auto mb-6">Accede a orientación profesional en salud, nutrición y bienestar con nuestro equipo de enfermería. Agenda tu cita por WhatsApp de forma rápida y segura.</p>
+      <a href="https://wa.me/593999999999" class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800">Agendar asesoría</a>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-green-700 text-white text-center py-6">
+      <p>&copy; 2025 sheysaludfx. Todos los derechos reservados.</p>
+    </footer>
+  </main>
 
   <!-- WhatsApp Button -->
-  <a href="https://wa.me/593999999999" class="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-xl" target="_blank">
+  <a href="https://wa.me/593999999999" class="fixed bottom-4 right-4 bg-green-600 text-white p-3 rounded-full shadow-xl hover:bg-green-700" target="_blank">
     💬
   </a>
 </body>
