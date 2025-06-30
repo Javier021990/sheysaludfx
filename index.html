@@ -169,7 +169,8 @@
         const container = document.getElementById("products-container");
         container.innerHTML = "";
         const start = (page - 1) * perPage;
-        products.slice(start, start + perPage).forEach(p => {
+        const slice = products.slice(start, start + perPage);
+        slice.forEach(p => {
           const card = document.createElement("div");
           card.className = "bg-white rounded-xl shadow p-4 text-center";
 
@@ -190,9 +191,9 @@
 
         const total = Math.ceil(products.length / perPage);
         document.getElementById("pagination").innerHTML = `
-          <button ${"{page===1?'disabled':''}"} onclick="if(page>1){page--;render();}">Anterior</button>
-          <span class="mx-2">Página ${"{page}"} de ${"{total}"}</span>
-          <button ${"{page===total?'disabled':''}"} onclick="if(page<${29/6}){page++;render();}">Siguiente</button>
+          <button ${page===1 ? 'disabled' : ''} onclick="if(page>1){page--; render();}">Anterior</button>
+          <span class="mx-2">Página ${page} de ${total}</span>
+          <button ${page===total ? 'disabled' : ''} onclick="if(page<total){page++; render();}">Siguiente</button>
         `;
       }
       render();
