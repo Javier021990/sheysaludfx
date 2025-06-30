@@ -111,6 +111,7 @@
 
 
 
+
 <script>
 let selectedProduct = {};
 
@@ -133,41 +134,12 @@ function changeQty(delta) {
 }
 
 function buyProduct() {
-  const msg = `Hola, quiero pedir:%0A- ${selectedProduct.name} x${selectedProduct.qty}`;
-  window.open(`https://wa.me/593992478119?text=${msg}`, '_blank');
+  const msg = 'Hola, quiero pedir:%0A- ' + selectedProduct.name + ' x' + selectedProduct.qty;
+  window.open('https://wa.me/593992478119?text=' + msg, '_blank');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const products = [
-  { name: "Fuxion 01", image: "Fuxion01.jpeg" },
-  { name: "Fuxion 02", image: "Fuxion02.jpeg" },
-  { name: "Fuxion 03", image: "Fuxion03.jpeg" },
-  { name: "Fuxion 04", image: "Fuxion04.jpeg" },
-  { name: "Fuxion 05", image: "Fuxion05.jpeg" },
-  { name: "Fuxion 06", image: "Fuxion06.jpeg" },
-  { name: "Fuxion 07", image: "Fuxion07.jpeg" },
-  { name: "Fuxion 08", image: "Fuxion08.jpeg" },
-  { name: "Fuxion 09", image: "Fuxion09.jpeg" },
-  { name: "Fuxion 10", image: "Fuxion10.jpeg" },
-  { name: "Fuxion 11", image: "Fuxion11.jpeg" },
-  { name: "Fuxion 12", image: "Fuxion12.jpeg" },
-  { name: "Fuxion 13", image: "Fuxion13.jpeg" },
-  { name: "Fuxion 14", image: "Fuxion14.jpeg" },
-  { name: "Fuxion 15", image: "Fuxion15.jpeg" },
-  { name: "Fuxion 16", image: "Fuxion16.jpeg" },
-  { name: "Fuxion 17", image: "Fuxion17.jpeg" },
-  { name: "Fuxion 18", image: "Fuxion18.jpeg" },
-  { name: "Fuxion 19", image: "Fuxion19.jpeg" },
-  { name: "Fuxion 20", image: "Fuxion20.jpeg" },
-  { name: "Fuxion 21", image: "Fuxion21.jpeg" },
-  { name: "Fuxion 22", image: "Fuxion22.jpeg" },
-  { name: "Fuxion 23", image: "Fuxion23.jpeg" },
-  { name: "Fuxion 24", image: "Fuxion24.jpeg" },
-  { name: "Fuxion 25", image: "Fuxion25.jpeg" },
-  { name: "Fuxion 26", image: "Fuxion26.jpeg" },
-  { name: "Fuxion 27", image: "Fuxion27.jpeg" },
-  { name: "Fuxion 28", image: "Fuxion28.jpeg" },
-  ];
+  const products = [{"name": "Fuxion 01", "image": "Fuxion01.jpeg"}, {"name": "Fuxion 02", "image": "Fuxion02.jpeg"}, {"name": "Fuxion 03", "image": "Fuxion03.jpeg"}, {"name": "Fuxion 04", "image": "Fuxion04.jpeg"}, {"name": "Fuxion 05", "image": "Fuxion05.jpeg"}, {"name": "Fuxion 06", "image": "Fuxion06.jpeg"}, {"name": "Fuxion 07", "image": "Fuxion07.jpeg"}, {"name": "Fuxion 08", "image": "Fuxion08.jpeg"}, {"name": "Fuxion 09", "image": "Fuxion09.jpeg"}, {"name": "Fuxion 10", "image": "Fuxion10.jpeg"}, {"name": "Fuxion 11", "image": "Fuxion11.jpeg"}, {"name": "Fuxion 12", "image": "Fuxion12.jpeg"}, {"name": "Fuxion 13", "image": "Fuxion13.jpeg"}, {"name": "Fuxion 14", "image": "Fuxion14.jpeg"}, {"name": "Fuxion 15", "image": "Fuxion15.jpeg"}, {"name": "Fuxion 16", "image": "Fuxion16.jpeg"}, {"name": "Fuxion 17", "image": "Fuxion17.jpeg"}, {"name": "Fuxion 18", "image": "Fuxion18.jpeg"}, {"name": "Fuxion 19", "image": "Fuxion19.jpeg"}, {"name": "Fuxion 20", "image": "Fuxion20.jpeg"}, {"name": "Fuxion 21", "image": "Fuxion21.jpeg"}, {"name": "Fuxion 22", "image": "Fuxion22.jpeg"}, {"name": "Fuxion 23", "image": "Fuxion23.jpeg"}, {"name": "Fuxion 24", "image": "Fuxion24.jpeg"}, {"name": "Fuxion 25", "image": "Fuxion25.jpeg"}, {"name": "Fuxion 26", "image": "Fuxion26.jpeg"}, {"name": "Fuxion 27", "image": "Fuxion27.jpeg"}, {"name": "Fuxion 28", "image": "Fuxion28.jpeg"}];
 
   let currentPage = 1;
   const itemsPerPage = 6;
@@ -181,10 +153,20 @@ document.addEventListener("DOMContentLoaded", function () {
     products.slice(start, end).forEach(p => {
       const card = document.createElement("div");
       card.className = "bg-white rounded-xl shadow p-4 text-center";
-      card.innerHTML = `
-        <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-40 w-full object-cover cursor-pointer" onclick="openProductModal('${p.name}', '${p.image}')" />
-        <h3 class="font-semibold text-lg mb-2 text-green-700 hover:underline cursor-pointer" onclick="openProductModal('${p.name}', '${p.image}')">${p.name}</h3>
-      `;
+
+      const img = document.createElement("img");
+      img.src = p.image;
+      img.alt = p.name;
+      img.className = "mx-auto mb-3 rounded h-40 w-full object-cover cursor-pointer";
+      img.addEventListener("click", () => openProductModal(p.name, p.image));
+
+      const title = document.createElement("h3");
+      title.textContent = p.name;
+      title.className = "font-semibold text-lg mb-2 text-green-700 hover:underline cursor-pointer";
+      title.addEventListener("click", () => openProductModal(p.name, p.image));
+
+      card.appendChild(img);
+      card.appendChild(title);
       container.appendChild(card);
     });
     renderPagination();
