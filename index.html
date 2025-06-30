@@ -58,7 +58,7 @@
     <!-- Productos -->
     
 
-<section id="productos" class="px-6 py-14" style="background-color: #fef6f0;">
+<section id="productos" class="px-6 py-14 bg-[#fef6f0]">
   <h2 class="text-3xl font-bold text-center mb-10">Catálogo FUXION</h2>
   <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
   <div id="pagination" class="flex justify-center items-center space-x-4 mt-8 text-gray-700"></div>
@@ -145,9 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
-
 <script>
-const products = [
+document.addEventListener("DOMContentLoaded", function () {
+  const products = [
   { name: "Fuxion 01", image: "Fuxion01.jpeg" },
   { name: "Fuxion 02", image: "Fuxion02.jpeg" },
   { name: "Fuxion 03", image: "Fuxion03.jpeg" },
@@ -176,58 +176,65 @@ const products = [
   { name: "Fuxion 26", image: "Fuxion26.jpeg" },
   { name: "Fuxion 27", image: "Fuxion27.jpeg" },
   { name: "Fuxion 28", image: "Fuxion28.jpeg" },
-];
+  ];
 
-let currentPage = 1;
-const itemsPerPage = 6;
+  let currentPage = 1;
+  const itemsPerPage = 6;
 
-function renderProducts() {
-  const start = (currentPage - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
+  function renderProducts() {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const container = document.getElementById("products-container");
+    container.innerHTML = "";
 
-  const container = document.getElementById("products-container");
-  container.innerHTML = "";
+    products.slice(start, end).forEach(p => {
+      const card = document.createElement("div");
+      card.className = "bg-white rounded-xl shadow p-4 text-center";
+      card.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-40 w-full object-cover" />
+        <h3 class="font-semibold text-lg mb-2">${p.name}</h3>
+        <button onclick="addToCart('${p.name}')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Añadir al carrito</button>
+      `;
+      container.appendChild(card);
+    });
+    renderPagination();
+  }
 
-  products.slice(start, end).forEach(p => {
-    const card = document.createElement("div");
-    card.className = "bg-white rounded-xl shadow p-4 text-center";
-    card.innerHTML = `
-      <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-40 w-full object-cover" />
-      <h3 class="font-semibold text-lg mb-2">${p.name}</h3>
-      <button onclick="addToCart('${p.name}')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Añadir al carrito</button>
+  function renderPagination() {
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const pag = document.getElementById("pagination");
+    pag.innerHTML = `
+      <button onclick="prevPage()" ${currentPage === 1 ? 'disabled' : ''}>Anterior</button>
+      <span class="mx-2">Página ${currentPage} de ${totalPages}</span>
+      <button onclick="nextPage()" ${currentPage === totalPages ? 'disabled' : ''}>Siguiente</button>
     `;
-    container.appendChild(card);
-  });
-
-  renderPagination();
-}
-
-function renderPagination() {
-  const totalPages = Math.ceil(products.length / itemsPerPage);
-  const pag = document.getElementById("pagination");
-  pag.innerHTML = `
-    <button onclick="prevPage()" ${disabled: currentPage === 1 ? 'disabled' : ''}>Anterior</button>
-    <span class="mx-2">Página ${currentPage} de ${totalPages}</span>
-    <button onclick="nextPage()" ${disabled: currentPage === totalPages ? 'disabled' : ''}>Siguiente</button>
-  `;
-}
-
-function prevPage() {
-  if (currentPage > 1) {
-    currentPage--;
-    renderProducts();
   }
-}
 
-function nextPage() {
-  const totalPages = Math.ceil(products.length / itemsPerPage);
-  if (currentPage < totalPages) {
-    currentPage++;
-    renderProducts();
+  window.addToCart = function(name) {
+    const existing = window.cart.find(p => p.name === name);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      window.cart.push({ name, qty: 1 });
+    }
+    updateCartIcon();
   }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
+  window.prevPage = function() {
+    if (currentPage > 1) {
+      currentPage--;
+      renderProducts();
+    }
+  }
+
+  window.nextPage = function() {
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderProducts();
+    }
+  }
+
   renderProducts();
 });
 </script>
