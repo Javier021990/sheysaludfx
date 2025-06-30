@@ -108,43 +108,31 @@
 <!-- Script del carrito -->
 
 
+
 <script>
-let cart = [];
+let selectedProduct = {};
 
-function addToCart(name, image = '') {
-  const existing = cart.find(p => p.name === name);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ name, qty: 1 });
-  }
-  updateCartIcon();
-  showModal(name, image);
+function openProductModal(name, image) {
+  selectedProduct = { name, image, qty: 1 };
+  document.getElementById("product-name").textContent = name;
+  document.getElementById("product-img").src = image;
+  document.getElementById("product-qty").textContent = 1;
+  document.getElementById("product-description").textContent = "Este producto natural aporta bienestar integral y energía.";
+  document.getElementById("product-modal").classList.remove("hidden");
 }
 
-function updateCartIcon() {
-  const count = cart.reduce((acc, item) => acc + item.qty, 0);
-  const span = document.getElementById('cart-count');
-  if (span) span.textContent = count;
+function closeProductModal() {
+  document.getElementById("product-modal").classList.add("hidden");
 }
 
-function showModal(name, image) {
-  document.getElementById("modal-name").textContent = name;
-  document.getElementById("modal-img").src = image;
-  document.getElementById("modal").classList.remove("hidden");
+function changeQty(delta) {
+  selectedProduct.qty = Math.max(1, selectedProduct.qty + delta);
+  document.getElementById("product-qty").textContent = selectedProduct.qty;
 }
 
-function closeModal() {
-  document.getElementById("modal").classList.add("hidden");
-}
-
-function goToWhatsApp() {
-  if (cart.length === 0) return alert('El carrito está vacío');
-  let message = 'Hola, quiero pedir:%0A';
-  cart.forEach(p => {
-    message += `- ${p.name} x${p.qty}%0A`;
-  });
-  window.open(`https://wa.me/593992478119?text=${message}`, '_blank');
+function buyProduct() {
+  const msg = `Hola, quiero pedir:%0A- ${selectedProduct.name} x${selectedProduct.qty}`;
+  window.open(`https://wa.me/593992478119?text=${msg}`, '_blank');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -190,11 +178,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     products.slice(start, end).forEach(p => {
       const card = document.createElement("div");
-      card.className = "bg-white rounded-xl shadow p-4 text-center";
+      card.className = "bg-white rounded-xl shadow p-4 text-center cursor-pointer";
       card.innerHTML = `
-        <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-40 w-full object-cover" />
-        <h3 class="font-semibold text-lg mb-2">${p.name}</h3>
-        <button onclick="addToCart(\'${p.name}\', \'${p.image}\')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Añadir al carrito</button>
+        <img src="${p.image}" alt="${p.name}" onclick="openProductModal('${p.name}', '${p.image}')" class="mx-auto mb-3 rounded h-40 w-full object-cover" />
+        <h3 class="font-semibold text-lg mb-2 text-green-700 hover:underline" onclick="openProductModal('${p.name}', '${p.image}')">${p.name}</h3>
       `;
       container.appendChild(card);
     });
