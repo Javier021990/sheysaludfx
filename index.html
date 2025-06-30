@@ -6,6 +6,11 @@
   <title>SHEYSALUDFX</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
   <style>
+    :root {
+      --brand: #db2777; /* fuchsia-600 */
+      --brand-hover: #be185d; /* fuchsia-700 */
+      --brand-light: #fdf2f8; /* pink-50 */
+    }
     .carousel-arrow {
       position: absolute;
       top: 50%;
@@ -29,52 +34,45 @@
   <!-- Navbar -->
   <header class="bg-white shadow fixed w-full z-50 top-0">
     <div class="container mx-auto flex justify-between items-center px-6 py-4">
-      <h1 class="text-xl font-bold text-green-700">SHEYSALUDFX</h1>
+      <h1 class="text-xl font-bold" style="color: var(--brand)">SHEYSALUDFX</h1>
       <nav class="hidden md:flex space-x-4 text-sm font-medium">
-        <a href="#inicio" class="text-gray-700 hover:text-green-600">Inicio</a>
-        <a href="#productos" class="text-gray-700 hover:text-green-600">Productos</a>
-        <a href="#testimonios" class="text-gray-700 hover:text-green-600">Testimonios</a>
-        <a href="#asesoria" class="text-gray-700 hover:text-green-600">Asesoría</a>
-        <a href="#contacto" class="text-gray-700 hover:text-green-600">Contacto</a>
+        <a href="#inicio" class="text-gray-700 hover:text-pink-500">Inicio</a>
+        <a href="#productos" class="text-gray-700 hover:text-pink-500">Productos</a>
+        <a href="#testimonios" class="text-gray-700 hover:text-pink-500">Testimonios</a>
+        <a href="#asesoria" class="text-gray-700 hover:text-pink-500">Asesoría</a>
+        <a href="#contacto" class="text-gray-700 hover:text-pink-500">Contacto</a>
       </nav>
-      <button class="md:hidden text-gray-700 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-        ☰
-      </button>
+      <button class="md:hidden text-gray-700 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
     </div>
     <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
-      <a href="#inicio" class="block py-2 text-gray-700 hover:text-green-600">Inicio</a>
-      <a href="#productos" class="block py-2 text-gray-700 hover:text-green-600">Productos</a>
-      <a href="#testimonios" class="block py-2 text-gray-700 hover:text-green-600">Testimonios</a>
-      <a href="#asesoria" class="block py-2 text-gray-700 hover:text-green-600">Asesoría</a>
-      <a href="#contacto" class="block py-2 text-gray-700 hover:text-green-600">Contacto</a>
+      <a href="#inicio" class="block py-2 text-gray-700 hover:text-pink-500">Inicio</a>
+      <a href="#productos" class="block py-2 text-gray-700 hover:text-pink-500">Productos</a>
+      <a href="#testimonios" class="block py-2 text-gray-700 hover:text-pink-500">Testimonios</a>
+      <a href="#asesoria" class="block py-2 text-gray-700 hover:text-pink-500">Asesoría</a>
+      <a href="#contacto" class="block py-2 text-gray-700 hover:text-pink-500">Contacto</a>
     </div>
   </header>
 
   <main class="pt-20">
 
     <!-- Hero Section -->
-    <section id="inicio" class="relative text-white text-center py-20 px-4" style="background-image:url('mujersalud.png');background-size:cover;background-position:center;">
-      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <section id="inicio" class="relative text-white text-center py-20 px-4" style="background-image:url('mujersalud.png'); background-size:cover; background-position:center;">
+      <div class="absolute inset-0" style="background: rgba(0,0,0,0.4)"></div>
       <div class="relative z-10 space-y-4">
         <h1 class="text-5xl font-bold">SHEYSALUDFX</h1>
-        <p class="text-lg max-w-xl mx-auto">
-          Tu salud y bienestar, respaldados por asesoría de enfermería profesional y productos naturales de calidad.
-        </p>
+        <p class="text-lg max-w-xl mx-auto">Tu salud y bienestar, respaldados por asesoría de enfermería profesional y productos naturales de calidad.</p>
       </div>
     </section>
 
     <!-- Sobre Nosotros -->
     <section id="sobre-nosotros" class="px-6 py-14 text-center">
       <h2 class="text-3xl font-bold mb-4">Sobre nosotros</h2>
-      <p class="max-w-2xl mx-auto">
-        En <strong>SHEYSALUDFX</strong> nos enfocamos en potenciar tu bienestar físico y emocional a través de productos naturales,
-        asesoramiento profesional y compromiso con tu salud integral.
-      </p>
+      <p class="max-w-2xl mx-auto">En <strong>SHEYSALUDFX</strong> nos enfocamos en potenciar tu bienestar físico y emocional a través de productos naturales, asesoramiento profesional y compromiso con tu salud integral.</p>
     </section>
 
     <!-- Catálogo FUXION Carousel -->
-    <section id="productos" class="relative px-6 py-14 bg-[#e5f7f0]">
-      <h2 class="text-3xl font-bold text-center mb-10">Catálogo FUXION</h2>
+    <section id="productos" class="relative px-6 py-14" style="background: var(--brand-light)">
+      <h2 class="text-3xl font-bold text-center mb-10" style="color: #1f2937">Catálogo FUXION</h2>
       <div class="relative max-w-4xl mx-auto flex items-center justify-center">
         <div id="arrow-prev" class="carousel-arrow" onclick="prevSlide()">❮</div>
         <div id="carousel" class="flex overflow-hidden space-x-8 justify-center w-full px-16"></div>
@@ -86,22 +84,17 @@
     <section id="testimonios" class="px-6 py-14">
       <h2 class="text-3xl font-bold text-center mb-10">Lo que dicen nuestros clientes</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <!-- Comentarios -->
         <div class="bg-white p-6 shadow rounded-xl">
-          <p class="text-gray-700 italic">
-            “Con los productos de SHEYSALUDFX me siento con más energía cada día. La asesoría personalizada marca la diferencia.”
-          </p>
+          <p class="italic text-gray-700">“Con los productos de SHEYSALUDFX me siento con más energía cada día. La asesoría personalizada marca la diferencia.”</p>
           <p class="mt-4 font-semibold">– Ana López</p>
         </div>
         <div class="bg-white p-6 shadow rounded-xl">
-          <p class="text-gray-700 italic">
-            “La asesoría de enfermería me ayudó a entender mejor mi dieta y mis hábitos. ¡Recomiendo 100%!”
-          </p>
+          <p class="italic text-gray-700">“La asesoría de enfermería me ayudó a entender mejor mi dieta y mis hábitos. ¡Recomiendo 100%!”</p>
           <p class="mt-4 font-semibold">– Carlos Gómez</p>
         </div>
         <div class="bg-white p-6 shadow rounded-xl">
-          <p class="text-gray-700 italic">
-            “Los resultados con el programa Detox Natural fueron increíbles: más liviana y con mejor digestión.”
-          </p>
+          <p class="italic text-gray-700">“Los resultados con el programa Detox Natural fueron increíbles: más liviana y con mejor digestión.”</p>
           <p class="mt-4 font-semibold">– Mariana Ruiz</p>
         </div>
       </div>
@@ -109,22 +102,15 @@
 
     <!-- Asesoría de enfermería -->
     <section id="asesoria" class="px-6 py-14 bg-gray-100 text-center">
-      <h2 class="text-3xl font-bold mb-4">Asesoría de enfermería</h2>
-      <img src="shey.jpeg" alt="Enfermera SHEYSALUDFX" class="mx-auto mb-6 rounded-full w-40 h-40 object-cover shadow-xl border-4 border-white" />
-      <p class="max-w-xl mx-auto mb-6">
-        Accede a orientación profesional en salud, nutrición y bienestar con nuestro equipo de enfermería. Agenda tu cita por WhatsApp de forma rápida y segura.
-      </p>
-      <a href="https://wa.me/593992478119" class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800">
-        Agendar asesoría
-      </a>
+      <h2 class="text-3xl font-bold mb-4" style="color: #1f2937">Asesoría de enfermería</h2>
+      <img src="shey.jpeg" alt="Enfermera" class="mx-auto mb-6 rounded-full w-40 h-40 object-cover shadow-xl border-4 border-white"/>
+      <p class="max-w-xl mx-auto mb-6">Accede a orientación profesional en salud, nutrición y bienestar con nuestro equipo de enfermería. Agenda tu cita por WhatsApp de forma rápida y segura.</p>
+      <a href="https://wa.me/593992478119" class="inline-block px-6 py-3 rounded-full text-white" style="background: var(--brand)" onmouseover="this.style.background='var(--brand-hover)'" onmouseout="this.style.background='var(--brand)'">Agendar asesoría</a>
     </section>
 
     <!-- Footer -->
-    <footer id="contacto" class="bg-green-700 text-white text-center py-6">
-      <p>
-        &copy; 2025 SHEYSALUDFX. Todos los derechos reservados.<br />
-        <a href="https://wa.me/593992478119" class="underline">+593 992 478 119</a>
-      </p>
+    <footer class="bg-pink-600 text-white text-center py-6">
+      <p>&copy; 2025 SHEYSALUDFX. Todos los derechos reservados.<br/><a href="https://wa.me/593992478119" class="underline">+593 992 478 119</a></p>
     </footer>
 
   </main>
@@ -133,69 +119,32 @@
   <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-xl p-6 w-[90%] max-w-md shadow-xl text-center space-y-4">
       <h3 id="product-name" class="text-xl font-bold"></h3>
-      <img id="product-img" src="" alt="" class="w-full h-56 object-cover rounded" />
-      <p id="product-description" class="text-gray-600 text-sm">
-        Este producto natural aporta bienestar integral y energía.
-      </p>
+      <img id="product-img" src="" alt="" class="w-full h-56 object-cover rounded"/>
+      <p id="product-description" class="text-gray-600 text-sm">Este producto natural aporta bienestar integral y energía.</p>
       <div class="flex items-center justify-center space-x-4">
         <button onclick="changeQty(-1)" class="bg-gray-300 px-3 py-1 rounded">−</button>
         <span id="product-qty" class="font-bold text-lg">1</span>
         <button onclick="changeQty(1)" class="bg-gray-300 px-3 py-1 rounded">+</button>
       </div>
-      <button onclick="buyProduct()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">
-        Comprar por WhatsApp
-      </button>
-      <button onclick="closeProductModal()" class="text-sm text-gray-400 hover:text-gray-600">
-        Cerrar
-      </button>
+      <button onclick="buyProduct()" class="px-4 py-2 rounded w-full text-white" style="background: var(--brand)" onmouseover="this.style.background='var(--brand-hover)'" onmouseout="this.style.background='var(--brand)'">Comprar por WhatsApp</button>
+      <button onclick="closeProductModal()" class="text-sm text-gray-400 hover:text-gray-600">Cerrar</button>
     </div>
   </div>
 
   <!-- Carrito Flotante -->
-  <button onclick="goToWhatsApp()" class="fixed bottom-20 right-4 bg-white text-green-700 rounded-full shadow-lg p-3 flex items-center hover:bg-green-50 border border-green-600 z-40">
+  <button onclick="goToWhatsApp()" class="fixed bottom-20 right-4 bg-white text-pink-600 rounded-full shadow-lg p-3 flex items-center hover:bg-pink-50 border border-pink-500 z-40">
     🛒 <span id="cart-count" class="ml-1 font-bold">0</span>
   </button>
 
   <script>
-    let selectedProduct = {},
-      cart = [];
+    let selectedProduct = {}, cart = [];
+    function openProductModal(name,image){ selectedProduct={name,image,qty:1}; document.getElementById("product-name").textContent=name; document.getElementById("product-img").src=image; document.getElementById("product-qty").textContent=1; document.getElementById("product-modal").classList.remove("hidden"); }
+    function closeProductModal(){ document.getElementById("product-modal").classList.add("hidden"); }
+    function changeQty(d){ selectedProduct.qty=Math.max(1,selectedProduct.qty+d); document.getElementById("product-qty").textContent=selectedProduct.qty; }
+    function buyProduct(){ window.open("https://wa.me/593992478119?text="+encodeURIComponent("Hola, quiero pedir:%0A- "+selectedProduct.name+" x"+selectedProduct.qty)); }
+    function goToWhatsApp(){ if(!cart.length)return alert("Carrito vacío"); let m="Hola, quiero pedir:%0A"; cart.forEach(p=>m+="- "+p.name+" x"+p.qty+"%0A"); window.open("https://wa.me/593992478119?text="+encodeURIComponent(m)); }
 
-    function openProductModal(name, image) {
-      selectedProduct = { name, image, qty: 1 };
-      document.getElementById("product-name").textContent = name;
-      document.getElementById("product-img").src = image;
-      document.getElementById("product-qty").textContent = 1;
-      const m = document.getElementById("product-modal");
-      m.classList.remove("hidden");
-      m.classList.add("flex");
-    }
-
-    function closeProductModal() {
-      const m = document.getElementById("product-modal");
-      m.classList.add("hidden");
-      m.classList.remove("flex");
-    }
-
-    function changeQty(delta) {
-      selectedProduct.qty = Math.max(1, selectedProduct.qty + delta);
-      document.getElementById("product-qty").textContent = selectedProduct.qty;
-    }
-
-    function buyProduct() {
-      const msg = "Hola, quiero pedir:%0A- " + selectedProduct.name + " x" + selectedProduct.qty;
-      window.open("https://wa.me/593992478119?text=" + encodeURIComponent(msg), "_blank");
-    }
-
-    function goToWhatsApp() {
-      if (cart.length === 0) return alert("El carrito está vacío");
-      let message = "Hola, quiero pedir:%0A";
-      cart.forEach((p) => {
-        message += "- " + p.name + " x" + p.qty + "%0A";
-      });
-      window.open("https://wa.me/593992478119?text=" + encodeURIComponent(message), "_blank");
-    }
-
-    const products = [
+    const products=[
       { name: "Fuxion 01", image: "Fuxion01.jpeg" },
       { name: "Fuxion 02", image: "Fuxion02.jpeg" },
       { name: "Fuxion 03", image: "Fuxion03.jpeg" },
@@ -225,51 +174,27 @@
       { name: "Fuxion 27", image: "Fuxion27.jpeg" },
       { name: "Fuxion 28", image: "Fuxion28.jpeg" }
     ];
-    let currentIndex = 0;
-
-    function visibleCount() {
-      return window.innerWidth < 768 ? 1 : 2;
-    }
-
-    function renderCarousel() {
-      const container = document.getElementById("carousel");
-      container.innerHTML = "";
-      const count = visibleCount();
-      if (currentIndex + count > products.length) currentIndex = products.length - count;
-      if (currentIndex < 0) currentIndex = 0;
-      products.slice(currentIndex, currentIndex + count).forEach((p) => {
-        const card = document.createElement("div");
-        card.className = "bg-white rounded-xl shadow p-4 text-center flex-shrink-0 w-96";
-        card.innerHTML = `
-          <img src="${p.image}" alt="${p.name}"
-            class="mx-auto mb-3 rounded h-56 w-full object-cover cursor-pointer"
-            onclick="openProductModal('${p.name}','${p.image}')"
-          />
-          <h3 class="font-semibold text-xl text-green-700 cursor-pointer"
-              onclick="openProductModal('${p.name}','${p.image}')">
-            ${p.name}
-          </h3>
+    let currentIndex=0;
+    function visibleCount(){ return window.innerWidth<768?1:2; }
+    function renderCarousel(){
+      const c=document.getElementById("carousel"); c.innerHTML="";
+      const v=visibleCount();
+      if(currentIndex+v>products.length) currentIndex=products.length-v;
+      if(currentIndex<0) currentIndex=0;
+      products.slice(currentIndex,currentIndex+v).forEach(p=>{
+        const card=document.createElement("div");
+        card.className="bg-white rounded-xl shadow p-4 text-center flex-shrink-0 w-96";
+        card.innerHTML=`
+          <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-56 w-full object-cover cursor-pointer" onclick="openProductModal('${p.name}','${p.image}')"/>
+          <h3 class="font-semibold text-xl" style="color: var(--brand); cursor:pointer" onclick="openProductModal('${p.name}','${p.image}')">${p.name}</h3>
         `;
-        container.appendChild(card);
+        c.appendChild(card);
       });
     }
-
-    function prevSlide() {
-      currentIndex -= visibleCount();
-      if (currentIndex < 0) currentIndex = 0;
-      renderCarousel();
-    }
-
-    function nextSlide() {
-      currentIndex += visibleCount();
-      if (currentIndex > products.length - visibleCount()) {
-        currentIndex = products.length - visibleCount();
-      }
-      renderCarousel();
-    }
-
-    window.addEventListener("resize", renderCarousel);
-    document.addEventListener("DOMContentLoaded", renderCarousel);
+    function prevSlide(){ currentIndex-=visibleCount(); if(currentIndex<0) currentIndex=0; renderCarousel(); }
+    function nextSlide(){ currentIndex+=visibleCount(); if(currentIndex>products.length-visibleCount()) currentIndex=products.length-visibleCount(); renderCarousel(); }
+    window.addEventListener("resize",renderCarousel);
+    document.addEventListener("DOMContentLoaded",renderCarousel);
   </script>
 </body>
 </html>
