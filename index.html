@@ -96,18 +96,40 @@
 
   <!-- Modal Ficha de Producto -->
   <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-xl p-6 w-[90%] max-w-md shadow-xl text-center space-y-4">...
+    <div class="bg-white rounded-xl p-6 w-[90%] max-w-md shadow-xl text-center space-y-4">
+      <h3 id="product-name" class="text-xl font-bold"></h3>
+      <img id="product-img" src="" alt="" class="w-full h-56 object-cover rounded"/>
+      <p id="product-description" class="text-gray-600 text-sm">Este producto natural aporta bienestar integral y energía.</p>
+      <div class="flex items-center justify-center space-x-4">
+        <button onclick="changeQty(-1)" class="bg-gray-300 px-3 py-1 rounded">−</button>
+        <span id="product-qty" class="font-bold text-lg">1</span>
+        <button onclick="changeQty(1)" class="bg-gray-300 px-3 py-1 rounded">+</button>
+      </div>
+      <button onclick="buyProduct()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">Comprar por WhatsApp</button>
+      <button onclick="closeProductModal()" class="text-sm text-gray-400 hover:text-gray-600">Cerrar</button>
     </div>
   </div>
 
+  <!-- Carrito Flotante -->
+  <button onclick="goToWhatsApp()" class="fixed bottom-20 right-4 bg-white text-green-700 rounded-full shadow-lg p-3 flex items-center hover:bg-green-50 border border-green-600 z-40">
+    🛒 <span id="cart-count" class="ml-1 font-bold">0</span>
+  </button>
+
 <script>
-  const products = [{name:"Fuxion 01",image:"Fuxion01.jpeg"},{name:"Fuxion 02",image:"Fuxion02.jpeg"},{name:"Fuxion 03",image:"Fuxion03.jpeg"},{name:"Fuxion 04",image:"Fuxion04.jpeg"},{name:"Fuxion 05",image:"Fuxion05.jpeg"},{name:"Fuxion 06",image:"Fuxion06.jpeg"},{name:"Fuxion 07",image:"Fuxion07.jpeg"},{name:"Fuxion 08",image:"Fuxion08.jpeg"},{name:"Fuxion 09",image:"Fuxion09.jpeg"},{name:"Fuxion 10",image:"Fuxion10.jpeg"},{name:"Fuxion 11",image:"Fuxion11.jpeg"},{name:"Fuxion 12",image:"Fuxion12.jpeg"},{name:"Fuxion 13",image:"Fuxion13.jpeg"},{name:"Fuxion 14",image:"Fuxion14.jpeg"},{name:"Fuxion 15",image:"Fuxion15.jpeg"},{name:"Fuxion 16",image:"Fuxion16.jpeg"},{name:"Fuxion 17",image:"Fuxion17.jpeg"},{name:"Fuxion 18",image:"Fuxion18.jpeg"},{name:"Fuxion 19",image:"Fuxion19.jpeg"},{name:"Fuxion 20",image:"Fuxion20.jpeg"},{name:"Fuxion 21",image:"Fuxion21.jpeg"},{name:"Fuxion 22",image:"Fuxion22.jpeg"},{name:"Fuxion 23",image:"Fuxion23.jpeg"},{name:"Fuxion 24",image:"Fuxion24.jpeg"},{name:"Fuxion 25",image:"Fuxion25.jpeg"},{name:"Fuxion 26",image:"Fuxion26.jpeg"},{name:"Fuxion 27",image:"Fuxion27.jpeg"},{name:"Fuxion 28",image:"Fuxion28.jpeg"}];
+  let selectedProduct={}, cart=[];
+  function openProductModal(name,image){selectedProduct={name,image,qty:1};document.getElementById("product-name").textContent=name;document.getElementById("product-img").src=image;document.getElementById("product-qty").textContent=1;document.getElementById("product-modal").classList.remove("hidden");}
+  function closeProductModal(){document.getElementById("product-modal").classList.add("hidden");}
+  function changeQty(d){selectedProduct.qty=Math.max(1,selectedProduct.qty+d);document.getElementById("product-qty").textContent=selectedProduct.qty;}
+  function buyProduct(){window.open("https://wa.me/593992478119?text="+encodeURIComponent("Hola, quiero pedir:%0A- "+selectedProduct.name+" x"+selectedProduct.qty));}
+  function goToWhatsApp(){if(cart.length===0)return alert("El carrito está vacío");let m="Hola, quiero pedir:%0A";cart.forEach(p=>m+="- "+p.name+" x"+p.qty+"%0A");window.open("https://wa.me/593992478119?text="+encodeURIComponent(m));}
+
+  const products=[ {name:"Fuxion 01",image:"Fuxion01.jpeg"}, {name:"Fuxion 02",image:"Fuxion02.jpeg"}, {name:"Fuxion 03",image:"Fuxion03.jpeg"}, {name:"Fuxion 04",image:"Fuxion04.jpeg"}, {name:"Fuxion 05",image:"Fuxion05.jpeg"}, {name:"Fuxion 06",image:"Fuxion06.jpeg"}, {name:"Fuxion 07",image:"Fuxion07.jpeg"}, {name:"Fuxion 08",image:"Fuxion08.jpeg"}, {name:"Fuxion 09",image:"Fuxion09.jpeg"}, {name:"Fuxion 10",image:"Fuxion10.jpeg"}, {name:"Fuxion 11",image:"Fuxion11.jpeg"}, {name:"Fuxion 12",image:"Fuxion12.jpeg"}, {name:"Fuxion 13",image:"Fuxion13.jpeg"}, {name:"Fuxion 14",image:"Fuxion14.jpeg"}, {name:"Fuxion 15",image:"Fuxion15.jpeg"}, {name:"Fuxion 16",image:"Fuxion16.jpeg"}, {name:"Fuxion 17",image:"Fuxion17.jpeg"}, {name:"Fuxion 18",image:"Fuxion18.jpeg"}, {name:"Fuxion 19",image:"Fuxion19.jpeg"}, {name:"Fuxion 20",image:"Fuxion20.jpeg"}, {name:"Fuxion 21",image:"Fuxion21.jpeg"}, {name:"Fuxion 22",image:"Fuxion22.jpeg"}, {name:"Fuxion 23",image:"Fuxion23.jpeg"}, {name:"Fuxion 24",image:"Fuxion24.jpeg"}, {name:"Fuxion 25",image:"Fuxion25.jpeg"}, {name:"Fuxion 26",image:"Fuxion26.jpeg"}, {name:"Fuxion 27",image:"Fuxion27.jpeg"}, {name:"Fuxion 28",image:"Fuxion28.jpeg"} ];
+
   let idx=0, visible=2;
-  function renderCarousel(){const c=document.getElementById("carousel");c.innerHTML="";products.slice(idx,idx+visible).forEach(p=>{const d=document.createElement("div");d.className="bg-white rounded-xl shadow p-4 text-center flex-shrink-0 w-96";d.innerHTML=`<img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-56 w-full object-cover cursor-pointer"><h3 class="font-semibold text-xl text-green-700">${p.name}</h3>`;c.appendChild(d)});}
+  function renderCarousel(){const c=document.getElementById("carousel");c.innerHTML="";products.slice(idx,idx+visible).forEach(p=>{const card=document.createElement("div");card.className="bg-white rounded-xl shadow p-4 text-center flex-shrink-0 w-96";card.innerHTML=`<img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-56 w-full object-cover cursor-pointer" onclick="openProductModal('${p.name}','${p.image}')"><h3 class="font-semibold text-xl text-green-700">${p.name}</h3>`;c.appendChild(card)});}
   function prevSlide(){if(idx>=visible){idx-=visible;renderCarousel();}}
   function nextSlide(){if(idx+visible<products.length){idx+=visible;renderCarousel();}}
   document.addEventListener("DOMContentLoaded",renderCarousel);
 </script>
-
 </body>
 </html>
