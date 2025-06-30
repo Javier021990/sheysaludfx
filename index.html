@@ -110,6 +110,7 @@
 
 
 
+
 <script>
 let selectedProduct = {};
 
@@ -181,9 +182,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const card = document.createElement("div");
       card.className = "bg-white rounded-xl shadow p-4 text-center";
       card.innerHTML = `
-        <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-40 w-full object-cover cursor-pointer" onclick="openProductModal('0', '1')" />
-        <h3 class="font-semibold text-lg mb-2 text-green-700 hover:underline cursor-pointer" onclick="openProductModal('0', '1')">${p.name}</h3>
-      `.replaceAll('0', p.name).replaceAll('1', p.image);
+        <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-40 w-full object-cover cursor-pointer" onclick="openProductModal('${p.name}', '${p.image}')" />
+        <h3 class="font-semibold text-lg mb-2 text-green-700 hover:underline cursor-pointer" onclick="openProductModal('${p.name}', '${p.image}')">${p.name}</h3>
+      `;
       container.appendChild(card);
     });
     renderPagination();
