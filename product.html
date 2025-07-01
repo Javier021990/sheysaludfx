@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto · SHEYSALUDFX</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #db2777;
+      --brand-hover: #be185d;
+    }
+    .btn { padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600; }
+    .btn-primary { background: var(--brand); color: white; }
+    .btn-primary:hover { background: var(--brand-hover); }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="shadow-md fixed top-0 w-full bg-white z-10">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <a href="index.html" class="text-xl font-bold" style="color: var(--brand)">SHEYSALUDFX</a>
+      <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
+      <nav id="mobile-menu" class="hidden md:flex space-x-6">
+        <a href="index.html#productos" class="hover:opacity-80">Catálogo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow pt-24 px-6">
+    <section id="product-detail" class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+      <!-- Content injected by JS -->
+    </section>
+  </main>
+
+  <footer class="bg-gray-100 text-center py-6">
+    <p class="text-gray-600">&copy; 2025 SHEYSALUDFX.</p>
+  </footer>
+
+  <script>
+    const products = [
+      { id: "01", name: "Fuxion 01", image: "Fuxion01.jpeg", price: "$25.00", description: "Fuxion 01 es un producto natural..." },
+      // ... hasta id "28"
+    ];
+    // Populate dynamic list
+    for (let i = 2; i <= 28; i++) {
+      const id = String(i).padStart(2, "0");
+      products.push({ id, name: `Fuxion ${id}`, image: `Fuxion${id}.jpeg`, price: "$32.00", description: `Descripción de Fuxion ${id}.` });
+    }
+
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    const id = getQueryParam("id");
+    const product = products.find(p => p.id === id) || products[0];
+    const section = document.getElementById("product-detail");
+    section.innerHTML = `
+      <a href="index.html" class="text-sm text-gray-600 hover:underline">← Volver al catálogo</a>
+      <h1 class="text-3xl font-bold mt-4 mb-4" style="color: var(--brand)">${product.name}</h1>
+      <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg mb-6 object-cover"/>
+      <p class="mb-4"><strong>Precio:</strong> ${product.price}</p>
+      <p class="mb-6">${product.description}</p>
+      <a href="https://wa.me/593992478119?text=Hola,%20quiero%20pedir:%20-${product.name}%20x1"
+         class="btn btn-primary">📲 Comprar por WhatsApp</a>
+    `;
+  </script>
+</body>
+</html>
