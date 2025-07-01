@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Productos · SHEYSALUDFX</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --brand: #db2777;
+      --brand-hover: #be185d;
+      --brand-light: #fde8f4;
+    }
+    .product-card:hover { transform: translateY(-4px); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow fixed w-full z-50 top-0">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="text-xl font-bold" style="color: var(--brand)">SHEYSALUDFX</a>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium">
+        <a href="index.html#inicio" class="text-gray-700 hover:opacity-80">Inicio</a>
+        <a href="products.html" class="text-gray-700 hover:opacity-80">Productos</a>
+        <a href="index.html#testimonios" class="text-gray-700 hover:opacity-80">Testimonios</a>
+        <a href="index.html#asesoria" class="text-gray-700 hover:opacity-80">Asesoría</a>
+        <a href="index.html#contacto" class="text-gray-700 hover:opacity-80">Contacto</a>
+      </nav>
+      <button class="md:hidden text-gray-700 focus:outline-none" 
+              onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
+      <a href="index.html#inicio" class="block">Inicio</a>
+      <a href="products.html" class="block">Productos</a>
+      <a href="index.html#testimonios" class="block">Testimonios</a>
+      <a href="index.html#asesoria" class="block">Asesoría</a>
+      <a href="index.html#contacto" class="block">Contacto</a>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <!-- Promo Banner -->
+    <section class="bg-[var(--brand)] text-white text-center py-12">
+      <h2 class="text-lg uppercase">Envíos Gratis</h2>
+      <p class="text-3xl font-semibold">En la compra de Q250</p>
+      <p class="text-sm">No aplica a FUXION</p>
+    </section>
+
+    <!-- Breadcrumb -->
+    <nav class="container mx-auto px-6 py-4 text-sm text-gray-600">
+      <a href="index.html" class="hover:underline">Inicio</a> &gt; <span class="text-gray-800">FuXion</span>
+    </nav>
+
+    <!-- Products Grid -->
+    <section class="container mx-auto px-6 pb-12">
+      <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+    </section>
+  </main>
+
+  <footer class="bg-white py-6 text-center text-sm text-gray-600">
+    &copy; 2025 SHEYSALUDFX. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const products = Array.from({length:28}, (_,i) => {
+      const id = String(i+1).padStart(2,'0');
+      return { 
+        id, 
+        name: `Fuxion ${id}`, 
+        image: `Fuxion${id}.jpeg` 
+      };
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('products-grid');
+      products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl shadow product-card hover:shadow-lg transition-transform';
+        card.innerHTML = `
+          <a href="product.html?id=${p.id}">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-56 object-cover rounded-t-xl"/>
+          </a>
+          <div class="p-4 text-center">
+            <a href="product.html?id=${p.id}" class="text-lg font-medium text-[var(--brand)] hover:underline">${p.name}</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    });
+  </script>
+
+</body>
+</html>
