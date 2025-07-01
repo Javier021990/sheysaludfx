@@ -22,9 +22,6 @@
     }
     #arrow-prev { left: -24px; }
     #arrow-next { right: -24px; }
-    .hover-brand:hover { background: var(--brand-hover) !important; }
-    .product-name a { color: var(--brand); font-weight: 600; text-decoration: none; }
-    .product-name a:hover { text-decoration: underline; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -39,7 +36,10 @@
         <a href="#asesoria" class="text-gray-700 hover:opacity-80">Asesoría</a>
         <a href="#contacto" class="text-gray-700 hover:opacity-80">Contacto</a>
       </nav>
-      <button class="md:hidden text-gray-700 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
+      <button class="md:hidden text-gray-700 focus:outline-none" 
+              onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        ☰
+      </button>
     </div>
     <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
       <a href="#inicio" class="block text-gray-700 hover:opacity-80">Inicio</a>
@@ -52,7 +52,8 @@
 
   <main class="pt-20">
     <!-- Hero -->
-    <section id="inicio" class="relative text-white text-center py-20 px-4" style="background: linear-gradient(rgba(219,39,119,0.4), rgba(219,39,119,0.4)), url('mujersalud.png') center/cover no-repeat;">
+    <section id="inicio" class="relative text-white text-center py-20 px-4" 
+             style="background: linear-gradient(rgba(219,39,119,0.4), rgba(219,39,119,0.4)), url('mujersalud.png') center/cover no-repeat;">
       <div class="relative z-10 space-y-4">
         <h1 class="text-5xl font-light">SHEYSALUDFX</h1>
         <p class="text-lg max-w-xl mx-auto">Tu salud y bienestar, respaldados por asesoría de enfermería profesional y productos naturales de calidad.</p>
@@ -99,7 +100,7 @@
       <h2 class="text-3xl font-semibold mb-4" style="color: var(--brand)">Asesoría de enfermería</h2>
       <img src="shey.jpeg" alt="Enfermera" class="mx-auto mb-6 rounded-full w-40 h-40 object-cover shadow-xl border-4 border-[var(--brand)]"/>
       <p class="max-w-xl mx-auto mb-6">Accede a orientación profesional en salud, nutrición y bienestar con nuestro equipo de enfermería. Agenda tu cita por WhatsApp de forma rápida y segura.</p>
-      <a href="https://wa.me/593992478119" class="inline-block px-6 py-3 rounded-full text-white hover-brand" style="background: var(--brand)">📲 Agendar asesoría</a>
+      <a href="https://wa.me/593992478119" class="inline-block px-6 py-3 rounded-full text-white" style="background: var(--brand)" onmouseover="this.style.background=var('--brand-hover')" onmouseout="this.style.background=var('--brand')">📲 Agendar asesoría</a>
     </section>
 
     <!-- Footer -->
@@ -114,42 +115,40 @@
   </button>
 
   <script>
-    const products = [
-      { name: "Fuxion 01", image: "Fuxion01.jpeg" },
-      { name: "Fuxion 02", image: "Fuxion02.jpeg" },
-      // ... hasta Fuxion 28
-    ];
+    // Dynamic carousel
+    const products = Array.from({length: 28}, (_, i) => {
+      const id = String(i+1).padStart(2, '0');
+      return { name: `Fuxion ${id}`, image: `Fuxion${id}.jpeg` };
+    });
     let currentIndex = 0;
+    const carousel = document.getElementById('carousel');
     function visibleCount(){ return window.innerWidth < 768 ? 1 : 2; }
-
     function renderCarousel(){
-      const c = document.getElementById("carousel"); c.innerHTML = "";
+      carousel.innerHTML = '';
       const v = visibleCount();
       if(currentIndex + v > products.length) currentIndex = products.length - v;
       if(currentIndex < 0) currentIndex = 0;
       products.slice(currentIndex, currentIndex + v).forEach(p => {
-        const id = p.name.split(" ")[1];
-        const card = document.createElement("div");
-        card.className = "bg-white rounded-xl shadow p-4 text-center flex-shrink-0 w-96";
+        const id = p.name.split(' ')[1];
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl shadow p-4 text-center flex-shrink-0 w-96';
         card.innerHTML = `
-          <a href="fuxion${id}.html">
+          <a href="product.html?id=${id}">
             <img src="${p.image}" alt="${p.name}" class="mx-auto mb-3 rounded h-56 w-full object-cover"/>
           </a>
-          <h3 class="product-name text-xl mt-2">
-            <a href="fuxion${id}.html">${p.name}</a>
+          <h3 class="mt-2 text-xl">
+            <a href="product.html?id=${id}" style="color: var(--brand)">${p.name}</a>
           </h3>
         `;
-        c.appendChild(card);
+        carousel.appendChild(card);
       });
     }
-    function prevSlide(){ currentIndex -= visibleCount(); if(currentIndex < 0) currentIndex = 0; renderCarousel(); }
-    function nextSlide(){ currentIndex += visibleCount(); if(currentIndex > products.length - visibleCount()) currentIndex = products.length - visibleCount(); renderCarousel(); }
-    window.addEventListener("resize", renderCarousel);
-    document.addEventListener("DOMContentLoaded", renderCarousel);
+    function prevSlide(){ currentIndex = Math.max(0, currentIndex - visibleCount()); renderCarousel(); }
+    function nextSlide(){ currentIndex = Math.min(products.length - visibleCount(), currentIndex + visibleCount()); renderCarousel(); }
+    window.addEventListener('resize', renderCarousel);
+    document.addEventListener('DOMContentLoaded', renderCarousel);
 
-    function goToWhatsApp(){
-      alert("Implementa carrito o contacto en la ficha.");
-    }
+    function goToWhatsApp(){ alert('Carrito no implementado.'); }
   </script>
 </body>
 </html>
