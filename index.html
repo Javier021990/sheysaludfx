@@ -257,10 +257,17 @@
       </button>
     </div>
   </div>
-  <div class="chat-btn" id="chatBtn" aria-label="WhatsApp Chat" style="position:fixed; bottom:20px; right:20px; z-index:1000;">
-    <img src="whatsapp-icon.png" alt="Sheyla" style="width:48px; height:48px;"/>
-    <span style="position:absolute; top:4px; right:4px; width:8px; height:8px; background:#f00; border-radius:50%;"></span>
-  </div>
+  
+<div class="chat-btn" id="chatBtn" aria-label="WhatsApp Chat">
+  
+<svg viewBox="0 0 24 24">
+  <path d="M20.52 3.48A11.86 11.86 0 0012 0C5.37 0 .07 5.3.07 11.93c0 2.1.55 4.15 1.6 5.94L0 24l6.3-1.65A11.9 11.9 0 0012 24c6.63 0 11.93-5.3 11.93-11.97 0-3.19-1.25-6.16-3.41-8.55zM12 22.02a10.03 10.03 0 01-5.12-1.39l-.36-.21-3.73.98.99-3.64-.24-.37A9.97 9.97 0 012 11.93C2 6.58 6.55 2 12 2c3.19 0 6.16 1.25 8.55 3.41a9.9 9.9 0 013.45 8.52A9.93 9.93 0 0112 22.02z"/>
+  <path d="M17.57 14.46l-2.3-.66a.74.74 0 00-.77.2l-.56.59a8.02 8.02 0 01-3.72-3.66l.6-.55a.74.74 0 00.2-.77l-.67-2.3a.75.75 0 00-.72-.54H7.01a.75.75 0 00-.75.75c0 5.66 4.6 10.27 10.26 10.27a.75.75 0 00.75-.75v-2.51a.74.74 0 00-.75-.75h-.7z"/>
+</svg>
+
+  <span class="dot"></span>
+</div>
+
   <script>
     const chatBtn=document.getElementById('chatBtn'),
           chatPopup=document.getElementById('chatPopup'),
