@@ -50,7 +50,22 @@
     }
     #prev-hero { left: 1rem; }
     #next-hero { right: 1rem; }
-  </style>
+  
+    /* Product carousel arrows larger and visible */
+    #prev-prod, #next-prod {
+      width: 64px;
+      height: 64px;
+      font-size: 2rem;
+      z-index: 50;
+    }
+    #prev-prod { left: -32px; }
+    #next-prod { right: -32px; }
+    /* Increase product image height */
+    #prod-carousel img {
+      height: 16rem; /* 64 * 4 = 256px */
+      object-fit: cover;
+    }
+</style>
 </head>
 <body class="bg-gray-50 text-gray-800">
   <!-- Navbar -->
