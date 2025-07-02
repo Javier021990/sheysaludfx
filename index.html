@@ -8,10 +8,8 @@
   <style>
     :root {
       --brand: #db2777;
-      --brand-hover: #be185d;
-      --brand-overlay: rgba(219,39,119,0.4);
+      --brand-overlay: rgba(219,39,119,0.3);
     }
-    /* Hero */
     .hero-container {
       position: relative;
       overflow: hidden;
@@ -26,81 +24,56 @@
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
     }
-    .hero-slide.active { opacity: 1; }
+    .hero-slide.active {
+      opacity: 1;
+    }
     .hero-overlay {
       position: absolute;
       inset: 0;
       background: var(--brand-overlay);
     }
-    /* Carousel arrows */
     .carousel-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: var(--brand-overlay);
-      color: white;
+      background: white;
+      color: var(--brand);
       border-radius: 50%;
-      width: 64px;
-      height: 64px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 50;
-      font-size: 2rem;
-      transition: background 0.2s;
+      z-index: 10;
+      font-size: 1.5rem;
     }
-    .carousel-arrow:hover { background: var(--brand-hover); }
     #prev-hero { left: 1rem; }
     #next-hero { right: 1rem; }
-
-    /* Slide indicators */
-    .hero-indicators {
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.5rem;
+    #prev-prod, #next-prod {
+      width: 64px;
+      height: 64px;
+      font-size: 2rem;
       z-index: 50;
     }
-    .hero-indicator {
-      width: 0.75rem;
-      height: 0.75rem;
-      background: white;
-      opacity: 0.5;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
-    .hero-indicator.active { opacity: 1; }
-
-    /* Nav hover */
-    nav a:hover { color: var(--brand-hover); transition: color 0.2s; }
-    h3 a:hover { color: var(--brand-hover); }
-
-    /* Sobre Nosotros bg */
-    #sobre-nosotros { background-color: #fde8f4; }
-
-    /* Product images */
+    #prev-prod { left: -32px; }
+    #next-prod { right: -32px; }
     #prod-carousel img {
       height: 16rem;
       object-fit: cover;
-      margin: 0 auto;
     }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <!-- Navbar -->
   <header class="bg-white shadow fixed w-full z-50 top-0">
     <div class="container mx-auto flex justify-between items-center px-6 py-4">
       <h1 class="text-xl font-bold" style="color: var(--brand)">SHEYSALUDFX</h1>
       <nav class="hidden md:flex space-x-6 text-sm font-medium">
-        <a href="#inicio">Inicio</a>
-        <a href="#productos">Productos</a>
-        <a href="#testimonios">Testimonios</a>
-        <a href="#asesoria">Asesoría</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#inicio" class="hover:opacity-80">Inicio</a>
+        <a href="#productos" class="hover:opacity-80">Productos</a>
+        <a href="#testimonios" class="hover:opacity-80">Testimonios</a>
+        <a href="#asesoria" class="hover:opacity-80">Asesoría</a>
+        <a href="#contacto" class="hover:opacity-80">Contacto</a>
       </nav>
       <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
     </div>
@@ -114,19 +87,13 @@
   </header>
 
   <main class="pt-20">
-    <!-- Hero Carousel -->
     <section id="inicio" class="hero-container">
       <div id="slide1" class="hero-slide active" style="background-image:url('mujersalud.png');"></div>
       <div id="slide2" class="hero-slide" style="background-image:url('mujersalud2.png');"></div>
       <div id="slide3" class="hero-slide" style="background-image:url('mujersalud3.png');"></div>
       <div class="hero-overlay"></div>
-      <button id="prev-hero" class="carousel-arrow" aria-label="Anterior">❮</button>
-      <button id="next-hero" class="carousel-arrow" aria-label="Siguiente">❯</button>
-      <div class="hero-indicators">
-        <span class="hero-indicator active" data-index="0"></span>
-        <span class="hero-indicator" data-index="1"></span>
-        <span class="hero-indicator" data-index="2"></span>
-      </div>
+      <button id="prev-hero" class="carousel-arrow">❮</button>
+      <button id="next-hero" class="carousel-arrow">❯</button>
       <div class="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div class="text-center text-white space-y-4">
           <h1 class="text-5xl md:text-6xl font-bold">SHEYSALUDFX</h1>
@@ -135,23 +102,20 @@
       </div>
     </section>
 
-    <!-- Sobre Nosotros -->
-    <section id="sobre-nosotros" class="px-6 py-14 text-center">
+    <section id="sobre-nosotros" class="px-6 py-14 text-center bg-white">
       <h2 class="text-3xl font-semibold mb-4" style="color: var(--brand)">Sobre nosotros</h2>
       <p class="max-w-2xl mx-auto">En <strong style="color: var(--brand)">SHEYSALUDFX</strong> nos enfocamos en potenciar tu bienestar físico y emocional a través de productos naturales, asesoramiento profesional y compromiso con tu salud integral.</p>
     </section>
 
-    <!-- Catálogo FUXION Carousel -->
     <section id="productos" class="relative px-6 py-14 bg-gray-100">
       <h2 class="text-3xl font-semibold text-center mb-10">Catálogo FUXION</h2>
       <div class="relative max-w-5xl mx-auto flex items-center justify-center">
-        <button id="prev-prod" class="carousel-arrow" aria-label="Anterior producto">❮</button>
+        <button id="prev-prod" class="carousel-arrow">❮</button>
         <div id="prod-carousel" class="flex overflow-hidden space-x-8 justify-center w-full px-12"></div>
-        <button id="next-prod" class="carousel-arrow" aria-label="Siguiente producto">❯</button>
+        <button id="next-prod" class="carousel-arrow">❯</button>
       </div>
     </section>
 
-    <!-- Testimonios -->
     <section id="testimonios" class="px-6 py-14">
       <h2 class="text-3xl font-semibold text-center mb-10">Lo que dicen nuestros clientes</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -170,44 +134,60 @@
       </div>
     </section>
 
-    <!-- Asesoría de enfermería -->
     <section id="asesoria" class="px-6 py-14 text-center bg-gradient-to-r from-white to-gray-100">
       <h2 class="text-3xl font-semibold mb-6" style="color: var(--brand)">Asesoría de enfermería</h2>
       <img src="shey.jpeg" alt="Enfermera" class="mx-auto mb-6 rounded-full w-40 h-40 object-cover shadow-xl border-4 border-[var(--brand)]"/>
       <p class="max-w-xl mx-auto mb-6">Accede a orientación profesional en salud, nutrición y bienestar con nuestro equipo de enfermería. Agenda tu cita por WhatsApp de forma rápida y segura.</p>
-      <a href="https://wa.me/593992478119" class="inline-block px-6 py-3 rounded-full text-white btn-brand hover:bg-var(--brand-hover)">📲 Agendar asesoría</a>
+      <a href="https://wa.me/593992478119" class="inline-block px-6 py-3 rounded-full text-white" style="background: var(--brand)">📲 Agendar asesoría</a>
     </section>
 
-    <!-- Footer -->
     <footer id="contacto" class="text-white text-center py-8" style="background: var(--brand);">
       <p>&copy; 2025 SHEYSALUDFX. Todos los derechos reservados.<br/><a href="https://wa.me/593992478119" class="underline">+593 992 478 119</a></p>
     </footer>
   </main>
 
   <script>
-    // Hero carousel
     const heroSlides = document.querySelectorAll('.hero-slide');
-    const indicators = document.querySelectorAll('.hero-indicator');
     let heroIdx = 0;
     function showHero(i) {
       heroSlides.forEach((s, idx) => s.classList.toggle('active', idx === i));
-      indicators.forEach((ind, idx) => ind.classList.toggle('active', idx === i));
     }
     document.getElementById('prev-hero').onclick = () => { heroIdx = (heroIdx - 1 + heroSlides.length) % heroSlides.length; showHero(heroIdx); };
     document.getElementById('next-hero').onclick = () => { heroIdx = (heroIdx + 1) % heroSlides.length; showHero(heroIdx); };
-    indicators.forEach(ind => ind.onclick = e => { heroIdx = +e.target.dataset.index; showHero(heroIdx); });
     setInterval(() => { heroIdx = (heroIdx + 1) % heroSlides.length; showHero(heroIdx); }, 3000);
 
-    // Products carousel
     const products = [
-      /* same product list as before */
+      {id:'01',name:'Combo Trio Reductor',image:'Fuxion01.jpeg'},
+      {id:'02',name:'Combo Mujer',image:'Fuxion02.jpeg'},
+      {id:'03',name:'Combo Antiedad',image:'Fuxion03.jpeg'},
+      {id:'04',name:'Combo Gastritis',image:'Fuxion04.jpeg'},
+      {id:'05',name:'Combo Relax',image:'Fuxion05.jpeg'},
+      {id:'06',name:'Combo Worker',image:'Fuxion06.jpeg'},
+      {id:'07',name:'Combo Kids',image:'Fuxion07.jpeg'},
+      {id:'08',name:'Nocarb-T',image:'Fuxion08.jpeg'},
+      {id:'09',name:'Thermo T3',image:'Fuxion09.jpeg'},
+      {id:'10',name:'Beauty-In',image:'Fuxion10.jpeg'},
+      {id:'11',name:'Youth Elixir',image:'Fuxion11.jpeg'},
+      {id:'12',name:'Golden Flx',image:'Fuxion12.jpeg'},
+      {id:'13',name:'Probal',image:'Fuxion13.jpeg'},
+      {id:'14',name:'Passion',image:'Fuxion14.jpeg'},
+      {id:'15',name:'Biopro+ Fit',image:'Fuxion15.jpeg'},
+      {id:'16',name:'Post Sport',image:'Fuxion16.jpeg'},
+      {id:'17',name:'Pre Sport',image:'Fuxion17.jpeg'},
+      {id:'18',name:'No Stress',image:'Fuxion18.jpeg'},
+      {id:'19',name:'On',image:'Fuxion19.jpeg'},
+      {id:'20',name:'Gano+ Cappuccino',image:'Fuxion20.jpeg'},
+      {id:'21',name:'Vera+',image:'Fuxion21.jpeg'},
+      {id:'22',name:'Vita Xtra T+',image:'Fuxion22.jpeg'},
+      {id:'23',name:'Biopro+tect',image:'Fuxion23.jpeg'},
+      {id:'24',name:'Prunex',image:'Fuxion24.jpeg'},
+      {id:'25',name:'Liquid Fiber',image:'Fuxion25.jpeg'},
+      {id:'26',name:'Ok Balance',image:'Fuxion26.jpeg'},
+      {id:'27',name:'Berry Balance',image:'Fuxion27.jpeg'},
+      {id:'28',name:'Flora Liv',image:'Fuxion28.jpeg'}
     ];
     let prodIdx = 0;
-    function visibleCount() {
-      if (window.innerWidth < 768) return 1;
-      if (window.innerWidth >= 1280) return 3;
-      return 2;
-    }
+    function visibleCount() { return window.innerWidth < 768 ? 1 : 2; }
     const carouselEl = document.getElementById('prod-carousel');
     function renderProducts() {
       carouselEl.innerHTML = '';
@@ -217,7 +197,7 @@
         const div = document.createElement('div');
         div.className = 'bg-white rounded-xl shadow p-4 flex-shrink-0 w-80 text-center';
         div.innerHTML = `
-          <a href="product.html?id=${p.id}"><img src="${p.image}" alt="${p.name}" class="w-full rounded mb-3"/></a>
+          <a href="product.html?id=${p.id}"><img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover rounded mb-3"/></a>
           <h3 class="text-xl"><a href="product.html?id=${p.id}" style="color: var(--brand)">${p.name}</a></h3>`;
         carouselEl.appendChild(div);
       });
