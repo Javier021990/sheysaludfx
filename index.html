@@ -36,6 +36,52 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
 
+
+
+    /* Chat widget styles */
+    .chat-popup {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 280px; max-width: 90%;
+      display: none;
+      font-family: sans-serif;
+      z-index: 1001;
+    }
+    .chat-popup.active { display: block; }
+    .chat-popup-header {
+      display: flex; align-items: center; padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .chat-popup-header img {
+      width: 40px; height: 40px; border-radius: 50%; margin-right: 8px;
+    }
+    .chat-popup-header .info {
+      flex: 1;
+    }
+    .chat-popup-close {
+      cursor: pointer; font-size: 1.2rem;
+    }
+    .chat-popup-body {
+      padding: 12px;
+      color: #333;
+    }
+    .chat-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--brand);
+      color: white;
+      border-radius: 50%;
+      width: 60px; height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; cursor: pointer; z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
 </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -119,10 +165,7 @@
     </footer>
   </main>
 
-  <!-- Carrito flotante -->
-  <button onclick="goToWhatsApp()" class="fixed bottom-20 right-4 bg-white text-pink-600 rounded-full shadow-lg p-3 flex items-center hover:bg-pink-50 border border-pink-500 z-40">
-    🛒 <span id="cart-count" class="ml-1 font-bold">0</span>
-  </button>
+  
 
   <script>
     const products = [
@@ -190,6 +233,32 @@
   <a href="https://wa.me/593992478119" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
     📱
   </a>
+
+
+  <!-- Chat widget -->
+  <div class="chat-popup" id="chatPopup">
+    <div class="chat-popup-header">
+      <img src="avatar.jpg" alt="Valeria P"/>
+      <div class="info">
+        <strong>Valeria P</strong><br/>
+        <small>Administradora</small>
+      </div>
+      <span class="chat-popup-close" id="chatClose">×</span>
+    </div>
+    <div class="chat-popup-body" id="chatBody">
+      Hola! Escríbenos por WhatsApp para una atención directa.
+    </div>
+  </div>
+  <div class="chat-btn" id="chatBtn" aria-label="Chat WhatsApp">💬</div>
+  <script>
+    const chatBtn=document.getElementById('chatBtn'),
+          chatPopup=document.getElementById('chatPopup'),
+          chatClose=document.getElementById('chatClose'),
+          chatBody=document.getElementById('chatBody');
+    chatBtn.onclick=()=>{chatPopup.classList.toggle('active');};
+    chatClose.onclick=()=>{chatPopup.classList.remove('active');};
+    chatBody.onclick=()=>{window.open('https://wa.me/593992478119','_blank');};
+  </script>
 
 </body>
 </html>
