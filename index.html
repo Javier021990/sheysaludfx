@@ -7,15 +7,10 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
   <style>
     :root { --brand: #db2777; --brand-hover: #be185d; --brand-light: #fff0f6; --brand-light2: #fde8f4; }
-    .carousel-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,0.8); border-radius: 50%;
-      width: 48px; height: 48px; display: flex;
-      align-items: center; justify-content: center;
-      cursor: pointer; z-index: 10;
-    }
-    #arrow-prev { left: -24px; }
-    #arrow-next { right: -24px; }
+    .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
+    .hero-container { position: relative; overflow: hidden; height: 400px; }
+    .hero-slide { display: none; position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .hero-slide.active { display: block; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -24,29 +19,36 @@
     <div class="container mx-auto flex justify-between items-center px-6 py-4">
       <h1 class="text-xl font-bold" style="color: var(--brand)">SHEYSALUDFX</h1>
       <nav class="hidden md:flex space-x-6 text-sm font-medium">
-        <a href="#inicio" class="text-gray-700 hover:opacity-80">Inicio</a>
-        <a href="products.html" class="text-gray-700 hover:opacity-80">Productos</a>
-        <a href="#testimonios" class="text-gray-700 hover:opacity-80">Testimonios</a>
-        <a href="#asesoria" class="text-gray-700 hover:opacity-80">Asesoría</a>
-        <a href="#contacto" class="text-gray-700 hover:opacity-80">Contacto</a>
+        <a href="#inicio" class="hover:opacity-80">Inicio</a>
+        <a href="products.html" class="hover:opacity-80">Productos</a>
+        <a href="#testimonios" class="hover:opacity-80">Testimonios</a>
+        <a href="#asesoria" class="hover:opacity-80">Asesoría</a>
+        <a href="#contacto" class="hover:opacity-80">Contacto</a>
       </nav>
-      <button class="md:hidden text-gray-700 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
+      <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
     </div>
     <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
-      <a href="#inicio" class="block text-gray-700 hover:opacity-80">Inicio</a>
-      <a href="products.html" class="block text-gray-700 hover:opacity-80">Productos</a>
-      <a href="#testimonios" class="block text-gray-700 hover:opacity-80">Testimonios</a>
-      <a href="#asesoria" class="block text-gray-700 hover:opacity-80">Asesoría</a>
-      <a href="#contacto" class="block text-gray-700 hover:opacity-80">Contacto</a>
+      <a href="#inicio">Inicio</a>
+      <a href="products.html">Productos</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#asesoria">Asesoría</a>
+      <a href="#contacto">Contacto</a>
     </div>
   </header>
 
   <main class="pt-20">
-    <!-- Hero Section -->
-    <section id="inicio" class="relative text-white text-center py-20 px-4" style="background: linear-gradient(rgba(219,39,119,0.4), rgba(219,39,119,0.4)), url('mujersalud.png') center/cover no-repeat;">
-      <div class="relative z-10 space-y-4">
-        <h1 class="text-5xl font-light">SHEYSALUDFX</h1>
-        <p class="text-lg max-w-xl mx-auto">Tu salud y bienestar, respaldados por asesoría de enfermería profesional y productos naturales de calidad.</p>
+    <!-- Hero Carousel -->
+    <section id="inicio" class="hero-container">
+      <div id="slide1" class="hero-slide active" style="background-image:url('mujersalud.png');"></div>
+      <div id="slide2" class="hero-slide" style="background-image:url('mujersalud2.png');"></div>
+      <div id="slide3" class="hero-slide" style="background-image:url('mujersalud3.png');"></div>
+      <button id="prev" class="carousel-arrow" style="left:10px;">❮</button>
+      <button id="next" class="carousel-arrow" style="right:10px;">❯</button>
+      <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+        <div class="text-center text-white space-y-4 px-4">
+          <h1 class="text-4xl font-bold">SHEYSALUDFX</h1>
+          <p class="text-lg max-w-xl mx-auto">Tu salud y bienestar, respaldados por asesoría de enfermería profesional y productos naturales de calidad.</p>
+        </div>
       </div>
     </section>
 
@@ -56,7 +58,7 @@
       <p class="max-w-2xl mx-auto">En <strong style="color: var(--brand)">SHEYSALUDFX</strong> nos enfocamos en potenciar tu bienestar físico y emocional a través de productos naturales, asesoramiento profesional y compromiso con tu salud integral.</p>
     </section>
 
-    <!-- Catálogo FUXION Carousel -->
+    <!-- Catalogo Carousel -->
     <section id="productos" class="relative px-6 py-14 bg-[var(--brand-light2)]">
       <h2 class="text-3xl font-semibold text-center mb-10">Catálogo FUXION</h2>
       <div class="relative max-w-4xl mx-auto flex items-center justify-center">
@@ -85,7 +87,7 @@
       </div>
     </section>
 
-    <!-- Asesoría de enfermería -->
+    <!-- Asesoria -->
     <section id="asesoria" class="px-6 py-14" style="background: linear-gradient(to right, #ffffff, var(--brand-light)); text-align:center;">
       <h2 class="text-3xl font-semibold mb-4" style="color: var(--brand)">Asesoría de enfermería</h2>
       <img src="shey.jpeg" alt="Enfermera" class="mx-auto mb-6 rounded-full w-40 h-40 object-cover shadow-xl border-4 border-[var(--brand)]"/>
@@ -99,12 +101,27 @@
     </footer>
   </main>
 
-  <!-- Carrito flotante -->
-  <button onclick="goToWhatsApp()" class="fixed bottom-20 right-4 bg-white text-pink-600 rounded-full shadow-lg p-3 flex items-center hover:bg-pink-50 border border-pink-500 z-40">
-    🛒 <span id="cart-count" class="ml-1 font-bold">0</span>
-  </button>
-
   <script>
+    // Hero carousel
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+    function showSlide(i) {
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    }
+    document.getElementById('prev').onclick = () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    };
+    document.getElementById('next').onclick = () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    };
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 5000);
+
+    // Products carousel
     const products = [
       { id: '01', name: 'Combo Trio Reductor', image: 'Fuxion01.jpeg' },
       { id: '02', name: 'Combo Mujer', image: 'Fuxion02.jpeg' },
@@ -135,11 +152,10 @@
       { id: '27', name: 'Berry Balance', image: 'Fuxion27.jpeg' },
       { id: '28', name: 'Flora Liv', image: 'Fuxion28.jpeg' }
     ];
-
     let currentIndex = 0;
+    const carousel = document.getElementById('carousel');
     function visibleCount() { return window.innerWidth < 768 ? 1 : 2; }
     function renderCarousel() {
-      const carousel = document.getElementById('carousel');
       carousel.innerHTML = '';
       const v = visibleCount();
       if (currentIndex + v > products.length) currentIndex = products.length - v;
@@ -160,7 +176,7 @@
     }
     function prevSlide() { currentIndex = Math.max(0, currentIndex - visibleCount()); renderCarousel(); }
     function nextSlide() { currentIndex = Math.min(products.length - visibleCount(), currentIndex + visibleCount()); renderCarousel(); }
-    window.addEventListener('DOMContentLoaded', renderCarousel);
+    window.addEventListener('DOMContentLoaded', () => { renderCarousel(); showSlide(0); });
     window.addEventListener('resize', renderCarousel);
 
     function goToWhatsApp() { alert('Carrito no implementado.'); }
