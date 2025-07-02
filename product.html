@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Producto · SHEYSALUDFX</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    :root { --brand: #db2777; --brand-hover: #be185d; }
-    .btn { padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600; }
-    .btn-primary { background: var(--brand); color: white; }
-    .btn-primary:hover { background: var(--brand-hover); }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 </head>
 <body class="flex flex-col min-h-screen">
-  <header class="shadow-md fixed top-0 w-full bg-white z-10">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
-      <a href="index.html" class="text-xl font-bold" style="color: var(--brand)">SHEYSALUDFX</a>
-      <nav class="hidden md:flex space-x-6">
-        <a href="index.html#productos" class="hover:opacity-80">Catálogo</a>
-      </nav>
-      <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
-    </div>
-    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
-      <a href="index.html#productos" class="block">Catálogo</a>
-    </div>
-  </header>
+  <header><!-- Navbar omitted --></header>
   <main class="flex-grow pt-24 px-6">
-    <section id="product-detail" class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-      <!-- Filled by JS -->
-    </section>
+    <section id="product-detail" class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg"></section>
   </main>
-  <footer class="bg-gray-100 text-center py-6">
-    <p class="text-gray-600">&copy; 2025 SHEYSALUDFX.</p>
-  </footer>
+  <footer class="bg-gray-100 text-center py-6"><p class="text-gray-600">&copy; 2025 SHEYSALUDFX.</p></footer>
   <script>
-    const products = Array.from({length:28}, (_,i)=>({
-      id: String(i+1).padStart(2,'0'),
-      name: `Fuxion ${String(i+1).padStart(2,'0')}`,
-      image: `Fuxion${String(i+1).padStart(2,'0')}.jpeg`,
-      price: `$${(i%2?32:25)}.00`,
-      description: `Descripción del producto Fuxion ${String(i+1).padStart(2,'0')}.`
-    }));
+    const products = [
+    { id: '01', name: 'Combo Trio Reductor', image: 'Fuxion01.jpeg' },
+    { id: '02', name: 'Combo Mujer', image: 'Fuxion02.jpeg' },
+    { id: '03', name: 'Combo Antiedad', image: 'Fuxion03.jpeg' },
+    { id: '04', name: 'Combo Gastritis', image: 'Fuxion04.jpeg' },
+    { id: '05', name: 'Combo Relax', image: 'Fuxion05.jpeg' },
+    { id: '06', name: 'Combo Worker', image: 'Fuxion06.jpeg' },
+    { id: '07', name: 'Combo Kids', image: 'Fuxion07.jpeg' },
+    { id: '08', name: 'Nocarb-T', image: 'Fuxion08.jpeg' },
+    { id: '09', name: 'Thermo T3', image: 'Fuxion09.jpeg' },
+    { id: '10', name: 'Beauty-In', image: 'Fuxion10.jpeg' },
+    { id: '11', name: 'Youth Elixir', image: 'Fuxion11.jpeg' },
+    { id: '12', name: 'Golden Flx', image: 'Fuxion12.jpeg' },
+    { id: '13', name: 'Probal', image: 'Fuxion13.jpeg' },
+    { id: '14', name: 'Passion', image: 'Fuxion14.jpeg' },
+    { id: '15', name: 'Biopro+ Fit', image: 'Fuxion15.jpeg' },
+    { id: '16', name: 'Post Sport', image: 'Fuxion16.jpeg' },
+    { id: '17', name: 'Pre Sport', image: 'Fuxion17.jpeg' },
+    { id: '18', name: 'No Stress', image: 'Fuxion18.jpeg' },
+    { id: '19', name: 'On', image: 'Fuxion19.jpeg' },
+    { id: '20', name: 'Gano+ Cappuccino', image: 'Fuxion20.jpeg' },
+    { id: '21', name: 'Vera+', image: 'Fuxion21.jpeg' },
+    { id: '22', name: 'Vita Xtra T+', image: 'Fuxion22.jpeg' },
+    { id: '23', name: 'Biopro+tect', image: 'Fuxion23.jpeg' },
+    { id: '24', name: 'Prunex', image: 'Fuxion24.jpeg' },
+    { id: '25', name: 'Liquid Fiber', image: 'Fuxion25.jpeg' },
+    { id: '26', name: 'Ok Balance', image: 'Fuxion26.jpeg' },
+    { id: '27', name: 'Berry Balance', image: 'Fuxion27.jpeg' },
+    { id: '28', name: 'Flora Liv', image: 'Fuxion28.jpeg' }
+    ].map(p => Object.assign(p, { price: '$25.00', description: `Descripción de ${p.name}.` }));
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id') || '01';
-    const p = products.find(x=>x.id===id);
+    const p = products.find(x => x.id === id);
     const sec = document.getElementById('product-detail');
     sec.innerHTML = `
-      <a href="index.html" class="text-sm text-gray-600 hover:underline">← Volver al catálogo</a>
+      <a href="products.html" class="text-sm text-gray-600 hover:underline">← Volver al catálogo</a>
       <h1 class="text-3xl font-bold mt-4 mb-4" style="color:var(--brand)">${p.name}</h1>
       <img src="${p.image}" alt="${p.name}" class="w-full rounded-lg mb-6 object-cover"/>
       <p class="mb-4"><strong>Precio:</strong> ${p.price}</p>
