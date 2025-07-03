@@ -153,8 +153,66 @@
     document.getElementById('prev-hero').onclick = ()=>{ heroIdx=(heroIdx-1+heroSlides.length)%heroSlides.length; showHero(heroIdx); };
     document.getElementById('next-hero').onclick = ()=>{ heroIdx=(heroIdx+1)%heroSlides.length; showHero(heroIdx); };
     setInterval(()=>{ heroIdx=(heroIdx+1)%heroSlides.length; showHero(heroIdx); },3000);
-    // Products carousel (rendered via JS as before)
-    const whatsappBtn = document.querySelector('.whatsapp-float'), chatPopup = document.getElementById('chatPopup'), chatClose = document.getElementById('chatClose');
+    
+    // Products carousel
+    const products = [
+      {id:'01',name:'Combo Trio Reductor',image:'Fuxion01.jpeg'},
+      {id:'02',name:'Combo Mujer',image:'Fuxion02.jpeg'},
+      {id:'03',name:'Combo Antiedad',image:'Fuxion03.jpeg'},
+      {id:'04',name:'Combo Gastritis',image:'Fuxion04.jpeg'},
+      {id:'05',name:'Combo Relax',image:'Fuxion05.jpeg'},
+      {id:'06',name:'Combo Worker',image:'Fuxion06.jpeg'},
+      {id:'07',name:'Combo Kids',image:'Fuxion07.jpeg'},
+      {id:'08',name:'Nocarb-T',image:'Fuxion08.jpeg'},
+      {id:'09',name:'Thermo T3',image:'Fuxion09.jpeg'},
+      {id:'10',name:'Beauty-In',image:'Fuxion10.jpeg'},
+      {id:'11',name:'Youth Elixir',image:'Fuxion11.jpeg'},
+      {id:'12',name:'Golden Flx',image:'Fuxion12.jpeg'},
+      {id:'13',name:'Probal',image:'Fuxion13.jpeg'},
+      {id:'14',name:'Passion',image:'Fuxion14.jpeg'},
+      {id:'15',name:'Biopro+ Fit',image:'Fuxion15.jpeg'},
+      {id:'16',name:'Post Sport',image:'Fuxion16.jpeg'},
+      {id:'17',name:'Pre Sport',image:'Fuxion17.jpeg'},
+      {id:'18',name:'No Stress',image:'Fuxion18.jpeg'},
+      {id:'19',name:'On',image:'Fuxion19.jpeg'},
+      {id:'20',name:'Gano+ Cappuccino',image:'Fuxion20.jpeg'},
+      {id:'21',name:'Vera+',image:'Fuxion21.jpeg'},
+      {id:'22',name:'Vita Xtra T+',image:'Fuxion22.jpeg'},
+      {id:'23',name:'Biopro+tect',image:'Fuxion23.jpeg'},
+      {id:'24',name:'Prunex',image:'Fuxion24.jpeg'},
+      {id:'25',name:'Liquid Fiber',image:'Fuxion25.jpeg'},
+      {id:'26',name:'Ok Balance',image:'Fuxion26.jpeg'},
+      {id:'27',name:'Berry Balance',image:'Fuxion27.jpeg'},
+      {id:'28',name:'Flora Liv',image:'Fuxion28.jpeg'}
+    ];
+    let prodIdx = 0;
+    function visibleCount() {
+      if (window.innerWidth < 768) return 1;
+      if (window.innerWidth >= 1280) return 3;
+      return 2;
+    }
+    const carouselEl = document.getElementById('prod-carousel');
+    function renderProducts() {
+      carouselEl.innerHTML = '';
+      const v = visibleCount();
+      prodIdx = Math.min(Math.max(0, prodIdx), products.length - v);
+      products.slice(prodIdx, prodIdx + v).forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl shadow p-4 flex-shrink-0 w-80 text-center';
+        card.innerHTML = `
+          <a href="product.html?id=${p.id}">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover rounded mb-3"/>
+          </a>
+          <h3 class="text-xl"><a href="product.html?id=${p.id}" style="color: var(--brand)">${p.name}</a></h3>
+        `;
+        carouselEl.appendChild(card);
+      });
+    }
+    document.getElementById('prev-prod').onclick = () => { prodIdx -= visibleCount(); renderProducts(); };
+    document.getElementById('next-prod').onclick = () => { prodIdx += visibleCount(); renderProducts(); };
+    window.addEventListener('DOMContentLoaded', () => { renderProducts(); });
+    window.addEventListener('resize', renderProducts);
+const whatsappBtn = document.querySelector('.whatsapp-float'), chatPopup = document.getElementById('chatPopup'), chatClose = document.getElementById('chatClose');
     whatsappBtn.onclick = () => chatPopup.classList.toggle('active');
     chatClose.onclick = () => chatPopup.classList.remove('active');
   </script>
