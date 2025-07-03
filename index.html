@@ -44,7 +44,37 @@
     .chat-popup-body button { margin-top: 12px; width: 100%; padding: 12px; background: var(--brand); color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
 
     /* Floating WhatsApp button */
-    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; background: var(--brand); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; }
+    
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #ff2d95, #f472b6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 1000;
+}
+.whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+.whatsapp-float .dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: #ff3b30;
+    border-radius: 50%;
+}
+
     .whatsapp-float svg { width: 32px; height: 32px; fill: white; }
     .whatsapp-float .dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; background: #ff3b30; border-radius: 50%; }
   </style>
